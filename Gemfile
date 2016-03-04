@@ -37,6 +37,7 @@ gem 'haml'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'rmagick'
+gem 'tesseract_bin'
 gem 'rtesseract'
 
 group :development, :test do
