@@ -51,9 +51,12 @@ class SymbolsHider
 
   def process_image(image)
     @image = image
-    chars = RTesseract::BoxChar.new(image).words
+    temp_image_file = Tempfile.new(['', '.jpg'])
+    image.write(temp_image_file.path)
+    chars = RTesseract::BoxChar.new(temp_image_file.path).words
     chars.select!{|char| @symbols_to_clear.include? char[:char]}
     chars.each{|char| replace_char(char)}
+    temp_image_file.delete
     @image
   end
 
