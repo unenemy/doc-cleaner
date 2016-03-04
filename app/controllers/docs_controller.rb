@@ -4,6 +4,7 @@ class DocsController < ApplicationController
 
   def create
     hider = SymbolsHider.new(params[:file])
-    send_data hider.process_document, filename: hider.processed_filename, type: 'document/pdf'
+    hider.process_document
+    send_data hider.processed_pdf_blob, filename: hider.processed_pdf_filename, type: 'document/pdf'
   end
 end
