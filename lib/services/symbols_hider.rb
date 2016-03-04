@@ -3,10 +3,10 @@ class SymbolsHider
 
   attr_reader :processed_pdf_blob, :processed_pdf_filename
 
-  def initialize(file, case_sensitive=true, color='black')
+  def initialize(file, ignore_case=false, color='black')
     @file, @color = file, color
     @symbols_to_clear = CLEAR_SYMBOLS
-    @symbols_to_clear += CLEAR_SYMBOLS.map(&:upcase) unless case_sensitive
+    @symbols_to_clear += CLEAR_SYMBOLS.map(&:upcase) if ignore_case
     @processed_pdf_filename = File.basename(@file.original_filename, '.*') + '_cleared.pdf'
   end
 

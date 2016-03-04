@@ -1,3 +1,16 @@
-= form_tag '/docs', multipart: true do
-  = file_field_tag :file
-  = submit_tag 'Process'
+.container
+  .col-xs-4.col-xs-offset-4
+    %h2 Symbols hider
+    = form_tag '/docs', multipart: true do
+      .form-group
+        %label{:for => "file"} Choose your file
+        = file_field_tag :file
+        %p.help-block DOCX, DOC, ODT, ODS, PDF files supported
+      .form-group
+        %label Hovering color
+        = select_tag :color, options_for_select( ['white', 'black'] ), class: 'form-control'
+      .checkbox
+        %label
+          = check_box_tag :ignore_case
+          Ignore case
+      %button.btn.btn-primary{:type => "submit"} Submit
